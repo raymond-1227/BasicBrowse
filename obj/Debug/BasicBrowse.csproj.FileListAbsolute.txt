@@ -1,0 +1,12 @@
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\bin\Debug\BasicBrowse.exe.config
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\bin\Debug\BasicBrowse.exe
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\bin\Debug\BasicBrowse.pdb
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.csprojAssemblyReference.cache
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.Form1.resources
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.Properties.Resources.resources
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.csproj.GenerateResource.cache
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.csproj.CoreCompileInputs.cache
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.exe
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.pdb
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\bin\Debug\Guna.UI2.dll
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\Debug\BasicBrowse.csproj.CopyComplete
