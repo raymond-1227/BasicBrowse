@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.txtUrl = new Guna.UI2.WinForms.Guna2TextBox();
+			this.txtBar = new Guna.UI2.WinForms.Guna2TextBox();
 			this.imgBtnReload = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.imgBtnFoward = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.imgBtnBack = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -41,7 +41,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel1.Controls.Add(this.txtUrl);
+			this.panel1.Controls.Add(this.txtBar);
 			this.panel1.Controls.Add(this.imgBtnReload);
 			this.panel1.Controls.Add(this.imgBtnFoward);
 			this.panel1.Controls.Add(this.imgBtnBack);
@@ -51,32 +51,32 @@
 			this.panel1.Size = new System.Drawing.Size(784, 48);
 			this.panel1.TabIndex = 0;
 			// 
-			// txtUrl
+			// txtBar
 			// 
-			this.txtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtUrl.BorderRadius = 5;
-			this.txtUrl.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.txtUrl.DefaultText = "";
-			this.txtUrl.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-			this.txtUrl.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-			this.txtUrl.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-			this.txtUrl.DisabledState.Parent = this.txtUrl;
-			this.txtUrl.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-			this.txtUrl.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-			this.txtUrl.FocusedState.Parent = this.txtUrl;
-			this.txtUrl.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-			this.txtUrl.HoverState.Parent = this.txtUrl;
-			this.txtUrl.IconRightSize = new System.Drawing.Size(15, 15);
-			this.txtUrl.Location = new System.Drawing.Point(142, 10);
-			this.txtUrl.Name = "txtUrl";
-			this.txtUrl.PasswordChar = '\0';
-			this.txtUrl.PlaceholderText = "Enter URL";
-			this.txtUrl.SelectedText = "";
-			this.txtUrl.ShadowDecoration.Parent = this.txtUrl;
-			this.txtUrl.Size = new System.Drawing.Size(619, 30);
-			this.txtUrl.TabIndex = 3;
-			this.txtUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUrl_KeyPress);
+			this.txtBar.BorderRadius = 5;
+			this.txtBar.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.txtBar.DefaultText = "";
+			this.txtBar.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+			this.txtBar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+			this.txtBar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+			this.txtBar.DisabledState.Parent = this.txtBar;
+			this.txtBar.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+			this.txtBar.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+			this.txtBar.FocusedState.Parent = this.txtBar;
+			this.txtBar.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+			this.txtBar.HoverState.Parent = this.txtBar;
+			this.txtBar.IconRightSize = new System.Drawing.Size(15, 15);
+			this.txtBar.Location = new System.Drawing.Point(142, 10);
+			this.txtBar.Name = "txtBar";
+			this.txtBar.PasswordChar = '\0';
+			this.txtBar.PlaceholderText = "Search with Google or enter URL";
+			this.txtBar.SelectedText = "";
+			this.txtBar.ShadowDecoration.Parent = this.txtBar;
+			this.txtBar.Size = new System.Drawing.Size(619, 30);
+			this.txtBar.TabIndex = 3;
+			this.txtBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBar_KeyDown);
 			// 
 			// imgBtnReload
 			// 
@@ -164,7 +164,7 @@
 
 		private System.Windows.Forms.Panel panel1;
 		private Guna.UI2.WinForms.Guna2ImageButton imgBtnBack;
-		private Guna.UI2.WinForms.Guna2TextBox txtUrl;
+		private Guna.UI2.WinForms.Guna2TextBox txtBar;
 		private Guna.UI2.WinForms.Guna2ImageButton imgBtnReload;
 		private Guna.UI2.WinForms.Guna2ImageButton imgBtnFoward;
 		private System.Windows.Forms.Panel pContainer;

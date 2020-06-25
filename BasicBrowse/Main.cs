@@ -24,10 +24,8 @@ namespace BasicBrowse
 
 		private void Main_Load(object sender, EventArgs e)
 		{
-			CefSettings settings = new CefSettings();
-			Cef.Initialize(settings);
-			txtUrl.Text = "https://www.google.com";
-			browser = new ChromiumWebBrowser(txtUrl.Text);
+			txtBar.Text = "https://www.google.com";
+			browser = new ChromiumWebBrowser(txtBar.Text);
 			browser.Dock = DockStyle.Fill;
 			this.pContainer.Controls.Add(browser);
 			browser.AddressChanged += Browser_AddressChanged;
@@ -37,14 +35,23 @@ namespace BasicBrowse
 		{
 			this.Invoke(new MethodInvoker(() =>
 			{
-				txtUrl.Text = e.Address;
+				txtBar.Text = e.Address;
 			}));
 		}
 
-		private void txtUrl_KeyPress(object sender, KeyPressEventArgs e)
+		private void txtBar_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyChar == (char)13)
-				browser.Load(txtUrl.Text);
+			if (e.KeyCode == Keys.Enter && txtBar.Text.Trim().Length > 0)
+			{
+				if (txtBar.Text.Contains("."))
+				{
+					browser.Load(txtBar.Text);
+				}
+				else
+				{
+					browser.Load("https://www.google.com/search?client=chrome&q=" + txtBar.Text);
+				}
+			}
 		}
 
 		private void imgBtnReload_Click(object sender, EventArgs e)
