@@ -75,5 +75,11 @@ namespace BasicBrowse
 		{
 			Cef.Shutdown();
 		}
+
+		private void imgBtnAbout_Click(object sender, EventArgs e)
+		{
+			About aboutWindow = new About();
+			aboutWindow.ShowDialog();
+		}
 	}
 }

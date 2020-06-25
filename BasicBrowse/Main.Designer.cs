@@ -28,19 +28,23 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.imgBtnAbout = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.txtBar = new Guna.UI2.WinForms.Guna2TextBox();
 			this.imgBtnReload = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.imgBtnFoward = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.imgBtnBack = new Guna.UI2.WinForms.Guna2ImageButton();
 			this.pContainer = new System.Windows.Forms.Panel();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel1.Controls.Add(this.imgBtnAbout);
 			this.panel1.Controls.Add(this.txtBar);
 			this.panel1.Controls.Add(this.imgBtnReload);
 			this.panel1.Controls.Add(this.imgBtnFoward);
@@ -50,6 +54,26 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(784, 48);
 			this.panel1.TabIndex = 0;
+			// 
+			// imgBtnAbout
+			// 
+			this.imgBtnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.imgBtnAbout.BackColor = System.Drawing.Color.Transparent;
+			this.imgBtnAbout.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+			this.imgBtnAbout.CheckedState.Parent = this.imgBtnAbout;
+			this.imgBtnAbout.HoverState.ImageSize = new System.Drawing.Size(26, 26);
+			this.imgBtnAbout.HoverState.Parent = this.imgBtnAbout;
+			this.imgBtnAbout.Image = ((System.Drawing.Image)(resources.GetObject("imgBtnAbout.Image")));
+			this.imgBtnAbout.ImageRotate = 0F;
+			this.imgBtnAbout.ImageSize = new System.Drawing.Size(25, 25);
+			this.imgBtnAbout.Location = new System.Drawing.Point(740, 10);
+			this.imgBtnAbout.Name = "imgBtnAbout";
+			this.imgBtnAbout.PressedState.ImageSize = new System.Drawing.Size(25, 25);
+			this.imgBtnAbout.PressedState.Parent = this.imgBtnAbout;
+			this.imgBtnAbout.Size = new System.Drawing.Size(30, 30);
+			this.imgBtnAbout.TabIndex = 3;
+			this.toolTip.SetToolTip(this.imgBtnAbout, "About BasicBrowse");
+			this.imgBtnAbout.Click += new System.EventHandler(this.imgBtnAbout_Click);
 			// 
 			// txtBar
 			// 
@@ -68,13 +92,13 @@
 			this.txtBar.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
 			this.txtBar.HoverState.Parent = this.txtBar;
 			this.txtBar.IconRightSize = new System.Drawing.Size(15, 15);
-			this.txtBar.Location = new System.Drawing.Point(142, 10);
+			this.txtBar.Location = new System.Drawing.Point(138, 10);
 			this.txtBar.Name = "txtBar";
 			this.txtBar.PasswordChar = '\0';
 			this.txtBar.PlaceholderText = "Search with Google or enter URL";
 			this.txtBar.SelectedText = "";
 			this.txtBar.ShadowDecoration.Parent = this.txtBar;
-			this.txtBar.Size = new System.Drawing.Size(619, 30);
+			this.txtBar.Size = new System.Drawing.Size(592, 30);
 			this.txtBar.TabIndex = 3;
 			this.txtBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBar_KeyDown);
 			// 
@@ -94,6 +118,7 @@
 			this.imgBtnReload.PressedState.Parent = this.imgBtnReload;
 			this.imgBtnReload.Size = new System.Drawing.Size(30, 30);
 			this.imgBtnReload.TabIndex = 2;
+			this.toolTip.SetToolTip(this.imgBtnReload, "Reload current page");
 			this.imgBtnReload.Click += new System.EventHandler(this.imgBtnReload_Click);
 			// 
 			// imgBtnFoward
@@ -111,6 +136,7 @@
 			this.imgBtnFoward.PressedState.Parent = this.imgBtnFoward;
 			this.imgBtnFoward.Size = new System.Drawing.Size(30, 30);
 			this.imgBtnFoward.TabIndex = 1;
+			this.toolTip.SetToolTip(this.imgBtnFoward, "Go forward one page");
 			this.imgBtnFoward.Click += new System.EventHandler(this.imgBtnFoward_Click);
 			// 
 			// imgBtnBack
@@ -130,6 +156,7 @@
 			this.imgBtnBack.PressedState.Parent = this.imgBtnBack;
 			this.imgBtnBack.Size = new System.Drawing.Size(30, 30);
 			this.imgBtnBack.TabIndex = 0;
+			this.toolTip.SetToolTip(this.imgBtnBack, "Go back one page");
 			this.imgBtnBack.Click += new System.EventHandler(this.imgBtnBack_Click);
 			// 
 			// pContainer
@@ -151,8 +178,9 @@
 			this.ClientSize = new System.Drawing.Size(784, 561);
 			this.Controls.Add(this.pContainer);
 			this.Controls.Add(this.panel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Main";
-			this.Text = "Form1";
+			this.Text = "BasicBrowse";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
 			this.Load += new System.EventHandler(this.Main_Load);
 			this.panel1.ResumeLayout(false);
@@ -168,6 +196,8 @@
 		private Guna.UI2.WinForms.Guna2ImageButton imgBtnReload;
 		private Guna.UI2.WinForms.Guna2ImageButton imgBtnFoward;
 		private System.Windows.Forms.Panel pContainer;
+		private Guna.UI2.WinForms.Guna2ImageButton imgBtnAbout;
+		private System.Windows.Forms.ToolTip toolTip;
 	}
 }
 

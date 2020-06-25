@@ -107,3 +107,4 @@ C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\x86\Debug\BasicBrowse.cspro
 C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\x86\Debug\BasicBrowse.exe
 C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\x86\Debug\BasicBrowse.pdb
 C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\x86\Debug\BasicBrowse.Main.resources
+C:\Users\RH\source\repos\BasicBrowse\BasicBrowse\obj\x86\Debug\BasicBrowse.About.resources
