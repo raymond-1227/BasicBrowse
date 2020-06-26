@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BasicBrowser Logo.ico" />
+    <None Include="README.md" />
     <None Include="Resources\BasicBrowse Logo.ico" />
     <None Include="Resources\website_64px.ico" />
   </ItemGroup>
