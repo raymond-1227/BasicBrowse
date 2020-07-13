@@ -24,7 +24,7 @@ namespace BasicBrowse
 			{
 				Content = new Main
 				{
-					Text = "BasicBrowser"
+					Text = "BasicBrowse"
 				}
 			});
 

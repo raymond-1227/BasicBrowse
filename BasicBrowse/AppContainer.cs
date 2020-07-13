@@ -19,7 +19,7 @@ namespace BasicBrowse
 			InitializeComponent();
 			AeroPeekEnabled = true;
 			TabRenderer = new ChromeTabRenderer(this);
-			Icon = Properties.Resources.website_64px;
+			Icon = Properties.Resources.Main_App_Logo;
 		}
 
 		public override TitleBarTab CreateTab()
