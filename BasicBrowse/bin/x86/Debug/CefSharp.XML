@@ -191,6 +191,138 @@
             Gets a value indicating whether the callback has been disposed of.
             </summary>
         </member>
+        <member name="T:CefSharp.Callback.IDevToolsMessageObserver">
+            <summary>
+            Callback interface for <see cref="M:CefSharp.IBrowserHost.AddDevToolsMessageObserver(CefSharp.Callback.IDevToolsMessageObserver)"/>.
+            The methods of this class will be called on the CEF UI thread.
+            </summary>
+        </member>
+        <member name="M:CefSharp.Callback.IDevToolsMessageObserver.OnDevToolsMessage(CefSharp.IBrowser,System.IO.Stream)">
+            <summary>
+            Method that will be called on receipt of a DevTools protocol message.
+            Method result dictionaries include an "id" (int) value that identifies the
+            orginating method call sent from IBrowserHost.SendDevToolsMessage, and
+            optionally either a "result" (dictionary) or "error" (dictionary) value.
+            The "error" dictionary will contain "code" (int) and "message" (string)
+            values. Event dictionaries include a "method" (string) value and optionally
+            a "params" (dictionary) value. See the DevTools protocol documentation at
+            https://chromedevtools.github.io/devtools-protocol/ for details of
+            supported method calls and the expected "result" or "params" dictionary
+            contents. JSON dictionaries can be parsed using the CefParseJSON function
+            if desired, however be aware of performance considerations when parsing
+            large messages (some of which may exceed 1MB in size).
+            </summary>
+            <param name="browser">is the originating browser instance</param>
+            <param name="message">is a UTF8-encoded JSON dictionary representing either a method result or an event. 
+            is only valid for the scope of this callback and should be copied if necessary
+            </param>
+            <returns>Return true if the message was handled or false if the message
+            should be further processed and passed to the OnDevToolsMethodResult or
+            OnDevToolsEvent methods as appropriate.</returns>
+        </member>
+        <member name="M:CefSharp.Callback.IDevToolsMessageObserver.OnDevToolsMethodResult(CefSharp.IBrowser,System.Int32,System.Boolean,System.IO.Stream)">
+            <summary>
+            Method that will be called after attempted execution of a DevTools protocol
+            </summary>
+            <param name="browser">is the originating browser instance</param>
+            <param name="messageId">is the id value that identifies the originating method call message</param>
+            <param name="success">If the method succeeded <paramref name="success"/> will be true and <paramref name="result"/> will be the
+            UTF8-encoded JSON "result" dictionary value (which may be empty).
+            If the method failed <paramref name="success"/> will be false and <paramref name="result"/> will be the UTF8-encoded
+            JSON "error" dictionary value.
+            </param>
+            <param name="result">The stream is only valid for the scope of this
+            callback and should be copied if necessary. See the OnDevToolsMessage
+            documentation for additional details on  contents</param>
+        </member>
+        <member name="M:CefSharp.Callback.IDevToolsMessageObserver.OnDevToolsEvent(CefSharp.IBrowser,System.String,System.IO.Stream)">
+            <summary>
+            Method that will be called on receipt of a DevTools protocol event.
+            </summary>
+            <param name="browser">is the originating browser instance</param>
+            <param name="method">is the method value</param>
+            <param name="parameters">is the UTF8-encoded JSON "params" dictionary value (which
+            may be empty). This stream is only valid for the scope of this callback and
+            should be copied if necessary. See the OnDevToolsMessage documentation for
+            additional details on contents.
+            </param>
+        </member>
+        <member name="M:CefSharp.Callback.IDevToolsMessageObserver.OnDevToolsAgentAttached(CefSharp.IBrowser)">
+            <summary>
+            Method that will be called when the DevTools agent has attached.
+            This will generally occur in response to the first message sent while the agent is detached.
+            </summary>
+            <param name="browser">is the originating browser instance</param>
+        </member>
+        <member name="M:CefSharp.Callback.IDevToolsMessageObserver.OnDevToolsAgentDetached(CefSharp.IBrowser)">
+            <summary>
+            Method that will be called when the DevTools agent has detached.
+            Any method results that were pending before the agent became detached will not be delivered, and any active
+            event subscriptions will be canceled.
+            </summary>
+            <param name="browser">is the originating browser instance</param>
+        </member>
+        <member name="T:CefSharp.Callback.IResourceReadCallback">
+            <summary>
+            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/>.
+            </summary>
+        </member>
+        <member name="M:CefSharp.Callback.IResourceReadCallback.Continue(System.Int32)">
+            <summary>
+            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/>. If bytesRead == 0
+            the response will be considered complete. 
+            </summary>
+            <param name="bytesRead">
+            If bytesRead == 0 the response will be considered complete.
+            If bytesRead &gt; 0 then <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/> will be called again until the request is complete (based on either the
+            result or the expected content length). If bytesRead &lt; 0 then the
+            request will fail and the bytesRead value will be treated as the error
+            code.
+            </param>
+        </member>
+        <member name="P:CefSharp.Callback.IResourceReadCallback.IsDisposed">
+            <summary>
+            Gets a value indicating whether the callback has been disposed of.
+            </summary>
+        </member>
+        <member name="T:CefSharp.Callback.IResourceSkipCallback">
+            <summary>
+            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Skip(System.Int64,System.Int64@,CefSharp.Callback.IResourceSkipCallback)"/>.
+            </summary>
+        </member>
+        <member name="M:CefSharp.Callback.IResourceSkipCallback.Continue(System.Int64)">
+            <summary>
+            Callback for asynchronous continuation of Skip(). 
+            </summary>
+            <param name="bytesSkipped">If bytesSkipped &gt; 0 then either Skip() will be called
+            again until the requested number of bytes have been skipped or the request will proceed.
+            If bytesSkipped &lt;= the request will fail with ERR_REQUEST_RANGE_NOT_SATISFIABLE.</param>
+        </member>
+        <member name="P:CefSharp.Callback.IResourceSkipCallback.IsDisposed">
+            <summary>
+            Gets a value indicating whether the callback has been disposed of.
+            </summary>
+        </member>
+        <member name="T:CefSharp.Callback.IRunFileDialogCallback">
+            <summary>
+            Callback interface for IBrowserHost.RunFileDialog.
+            The methods of this class will be called on the CEF UI thread.
+            </summary>
+        </member>
+        <member name="M:CefSharp.Callback.IRunFileDialogCallback.OnFileDialogDismissed(System.Int32,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Called asynchronously after the file dialog is dismissed.
+            </summary>
+            <param name="selectedAcceptFilter">is the 0-based index of the value selected from the accept filters array passed to IBrowserHost.RunFileDialog</param>
+            <param name="filePaths">will be a single value or a list of values depending on the dialog mode. If the selection was cancelled filePaths will be empty</param>
+        </member>
+        <member name="T:CefSharp.Callback.NoOpCompletionCallback">
+            <summary>
+            Provides a callback implementation of <see cref="T:CefSharp.ICompletionCallback"/>
+            that does nothing with complete.
+            Added to workaround a CEF bug as per https://github.com/cefsharp/CefSharp/issues/2957#issuecomment-555285400
+            </summary>
+        </member>
         <member name="T:CefSharp.IDownloadItemCallback">
             <summary>
             Callback interface used to asynchronously cancel a download.
@@ -392,67 +524,6 @@
         <member name="P:CefSharp.IResolveCallback.IsDisposed">
             <summary>
             Gets a value indicating whether the callback has been disposed of.
-            </summary>
-        </member>
-        <member name="T:CefSharp.Callback.IResourceReadCallback">
-            <summary>
-            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/>.
-            </summary>
-        </member>
-        <member name="M:CefSharp.Callback.IResourceReadCallback.Continue(System.Int32)">
-            <summary>
-            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/>. If bytesRead == 0
-            the response will be considered complete. 
-            </summary>
-            <param name="bytesRead">
-            If bytesRead == 0 the response will be considered complete.
-            If bytesRead &gt; 0 then <see cref="M:CefSharp.IResourceHandler.Read(System.IO.Stream,System.Int32@,CefSharp.Callback.IResourceReadCallback)"/> will be called again until the request is complete (based on either the
-            result or the expected content length). If bytesRead &lt; 0 then the
-            request will fail and the bytesRead value will be treated as the error
-            code.
-            </param>
-        </member>
-        <member name="P:CefSharp.Callback.IResourceReadCallback.IsDisposed">
-            <summary>
-            Gets a value indicating whether the callback has been disposed of.
-            </summary>
-        </member>
-        <member name="T:CefSharp.Callback.IResourceSkipCallback">
-            <summary>
-            Callback for asynchronous continuation of <see cref="M:CefSharp.IResourceHandler.Skip(System.Int64,System.Int64@,CefSharp.Callback.IResourceSkipCallback)"/>.
-            </summary>
-        </member>
-        <member name="M:CefSharp.Callback.IResourceSkipCallback.Continue(System.Int64)">
-            <summary>
-            Callback for asynchronous continuation of Skip(). 
-            </summary>
-            <param name="bytesSkipped">If bytesSkipped &gt; 0 then either Skip() will be called
-            again until the requested number of bytes have been skipped or the request will proceed.
-            If bytesSkipped &lt;= the request will fail with ERR_REQUEST_RANGE_NOT_SATISFIABLE.</param>
-        </member>
-        <member name="P:CefSharp.Callback.IResourceSkipCallback.IsDisposed">
-            <summary>
-            Gets a value indicating whether the callback has been disposed of.
-            </summary>
-        </member>
-        <member name="T:CefSharp.Callback.IRunFileDialogCallback">
-            <summary>
-            Callback interface for IBrowserHost.RunFileDialog.
-            The methods of this class will be called on the CEF UI thread.
-            </summary>
-        </member>
-        <member name="M:CefSharp.Callback.IRunFileDialogCallback.OnFileDialogDismissed(System.Int32,System.Collections.Generic.IList{System.String})">
-            <summary>
-            Called asynchronously after the file dialog is dismissed.
-            </summary>
-            <param name="selectedAcceptFilter">is the 0-based index of the value selected from the accept filters array passed to IBrowserHost.RunFileDialog</param>
-            <param name="filePaths">will be a single value or a list of values depending on the dialog mode. If the selection was cancelled filePaths will be empty</param>
-        </member>
-        <member name="T:CefSharp.Callback.NoOpCompletionCallback">
-            <summary>
-            Provides a callback implementation of <see cref="T:CefSharp.ICompletionCallback"/>
-            that does nothing with complete.
-            Added to workaround a CEF bug as per https://github.com/cefsharp/CefSharp/issues/2957#issuecomment-555285400
             </summary>
         </member>
         <member name="T:CefSharp.IRunContextMenuCallback">
@@ -667,6 +738,63 @@
             
             </summary>
             <param name="registrar">scheme registra.</param>
+        </member>
+        <member name="T:CefSharp.DevToolsExtensions">
+            <summary>
+            Extensions for accessing DevTools through <see cref="T:CefSharp.IBrowserHost"/>
+            </summary>
+        </member>
+        <member name="M:CefSharp.DevToolsExtensions.ExecuteDevToolsMethod(CefSharp.IBrowserHost,System.Int32,System.String,CefSharp.Web.JsonString)">
+            <summary>
+            Execute a method call over the DevTools protocol. This is a more structured
+            version of SendDevToolsMessage.
+            See the DevTools protocol documentation at https://chromedevtools.github.io/devtools-protocol/ for details
+            of supported methods and the expected <paramref name="paramsAsJson"/> dictionary contents.
+            See the SendDevToolsMessage documentation for additional usage information.
+            </summary>
+            <param name="messageId">is an incremental number that uniquely identifies the message (pass 0 to have the next number assigned
+            automatically based on previous values)</param>
+            <param name="method">is the method name</param>
+            <param name="parameters">are the method parameters represented as a <see cref="T:CefSharp.Web.JsonString"/>,
+            which may be empty.</param>
+            <returns>return the assigned message Id if called on the CEF UI thread and the message was
+            successfully submitted for validation, otherwise 0</returns>
+        </member>
+        <member name="M:CefSharp.DevToolsExtensions.ExecuteDevToolsMethodAsync(CefSharp.IBrowser,System.Int32,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Execute a method call over the DevTools protocol. This is a more structured
+            version of SendDevToolsMessage. <see cref="M:CefSharp.DevToolsExtensions.ExecuteDevToolsMethod(CefSharp.IBrowserHost,System.Int32,System.String,CefSharp.Web.JsonString)"/> can only be called on the
+            CEF UI Thread, this method can be called on any thread.
+            See the DevTools protocol documentation at https://chromedevtools.github.io/devtools-protocol/ for details
+            of supported methods and the expected <paramref name="parameters"/> dictionary contents.
+            See the SendDevToolsMessage documentation for additional usage information.
+            </summary>
+            <param name="browser">the browser instance</param>
+            <param name="messageId">is an incremental number that uniquely identifies the message (pass 0 to have the next number assigned
+            automatically based on previous values)</param>
+            <param name="method">is the method name</param>
+            <param name="parameters">are the method parameters represented as a dictionary,
+            which may be empty.</param>
+            <returns>return a Task that can be awaited to obtain the assigned message Id. If the message was
+            unsuccessfully submitted for validation, this value will be 0.</returns>
+        </member>
+        <member name="M:CefSharp.DevToolsExtensions.ExecuteDevToolsMethodAsync(CefSharp.IWebBrowser,System.Int32,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Execute a method call over the DevTools protocol. This is a more structured
+            version of SendDevToolsMessage. <see cref="M:CefSharp.DevToolsExtensions.ExecuteDevToolsMethod(CefSharp.IBrowserHost,System.Int32,System.String,CefSharp.Web.JsonString)"/> can only be called on the
+            CEF UI Thread, this method can be called on any thread.
+            See the DevTools protocol documentation at https://chromedevtools.github.io/devtools-protocol/ for details
+            of supported methods and the expected <paramref name="parameters"/> dictionary contents.
+            See the SendDevToolsMessage documentation for additional usage information.
+            </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser instance</param>
+            <param name="messageId">is an incremental number that uniquely identifies the message (pass 0 to have the next number assigned
+            automatically based on previous values)</param>
+            <param name="method">is the method name</param>
+            <param name="parameters">are the method parameters represented as a dictionary,
+            which may be empty.</param>
+            <returns>return a Task that can be awaited to obtain the assigned message Id. If the message was
+            unsuccessfully submitted for validation, this value will be 0.</returns>
         </member>
         <member name="T:CefSharp.Enums.SchemeOptions">
             <summary>
@@ -1219,6 +1347,29 @@
             Every drag operation.
             </summary>
         </member>
+        <member name="T:CefSharp.Internals.CefThread">
+            <summary>
+            To access the CEF threads we expose a TaskFactory, as this requires managed vc++ this
+            exists in CefSharp.Core it cannot be directly accessed in CefSharp.dll. When
+            Cef.Initialized is called we pass a reference to the TaskFactory here so we
+            can write methods (typically extension methods) in this assembly.
+            </summary>
+        </member>
+        <member name="P:CefSharp.Internals.CefThread.UiThreadTaskFactory">
+            <summary>
+            TaskFactory will be null before Cef.Initialize is called
+            and null after Cef.Shutdown is called.
+            </summary>
+        </member>
+        <member name="P:CefSharp.Internals.CefThread.CanExecuteOnUiThread">
+            <summary>
+            true if we have a reference to the UiThreadTaskFactory
+            TaskFactory, otherwise false
+            </summary>
+            <remarks>
+            The current implementation isn't thread safe, generally speaking this shouldn't be a problem
+            </remarks>
+        </member>
         <member name="T:CefSharp.Internals.MimeTypeMapping">
             <summary>
             Internal Mime Type Mappings.
@@ -1753,6 +1904,11 @@
             <summary>
             Interface implemented by UI control that contains
             a ManagedCefBrowserAdapter instance.
+            </summary>
+        </member>
+        <member name="T:CefSharp.IRegistration">
+            <summary>
+            Generic callback interface used for managing the lifespan of a registration.
             </summary>
         </member>
         <member name="T:CefSharp.IUrlRequest">
@@ -2490,6 +2646,16 @@
             <param name="chromiumWebBrowser">The ChromiumWebBrowser control.</param>
             <param name="browser">the browser object.</param>
             <param name="status">indicates how the process terminated.</param>
+        </member>
+        <member name="M:CefSharp.Handler.RequestHandler.CefSharp#IRequestHandler#OnDocumentAvailableInMainFrame(CefSharp.IWebBrowser,CefSharp.IBrowser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CefSharp.Handler.RequestHandler.OnDocumentAvailableInMainFrame(CefSharp.IWebBrowser,CefSharp.IBrowser)">
+            <summary>
+            Called on the CEF UI thread when the window.document object of the main frame has been created.
+            </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser control</param>
+            <param name="browser">the browser object</param>
         </member>
         <member name="T:CefSharp.Handler.ResourceRequestHandler">
             <summary>
@@ -7520,6 +7686,13 @@
             <param name="isRedirect">has the request been redirected</param>
             <returns>Return true to cancel the navigation or false to allow the navigation to proceed.</returns>
         </member>
+        <member name="M:CefSharp.IRequestHandler.OnDocumentAvailableInMainFrame(CefSharp.IWebBrowser,CefSharp.IBrowser)">
+            <summary>
+            Called on the CEF UI thread when the window.document object of the main frame has been created.
+            </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser control</param>
+            <param name="browser">the browser object</param>
+        </member>
         <member name="M:CefSharp.IRequestHandler.OnOpenUrlFromTab(CefSharp.IWebBrowser,CefSharp.IBrowser,CefSharp.IFrame,System.String,CefSharp.WindowOpenDisposition,System.Boolean)">
             <summary>
             Called on the UI thread before OnBeforeBrowse in certain limited cases
@@ -9421,9 +9594,11 @@
         </member>
         <member name="P:CefSharp.CefSharpSettings.ConcurrentTaskExecution">
             <summary>
-            This influences the behavior of RegisterAsyncJsObject and how method calls are made.
-            By default the <see cref="T:CefSharp.Internals.MethodRunnerQueue"/> executes Tasks in a sync fashion.
-            Setting this property to true will allocate new Tasks on TaskScheduler.Default for execution.
+            This influences the behavior of how methods are executed for objects registered using
+            <see cref="M:CefSharp.IJavascriptObjectRepository.Register(System.String,System.Object,System.Boolean,CefSharp.BindingOptions)"/>.
+            By default the <see cref="T:CefSharp.Internals.MethodRunnerQueue"/> queues Tasks for execution in a sequential order.
+            A single method is exeucted at a time. Setting this property to true allows for concurrent task execution.
+            Method calls are executed on <see cref="P:System.Threading.Tasks.TaskScheduler.Default"/> (ThreadPool).
             </summary>
         </member>
         <member name="P:CefSharp.CefSharpSettings.FocusedNodeChangedEnabled">
@@ -9728,6 +9903,49 @@
             Returns true if this browser currently has an associated DevTools browser.
             Must be called on the CEF UI thread.
             </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CefSharp.IBrowserHost.SendDevToolsMessage(System.String)" -->
+        <member name="M:CefSharp.IBrowserHost.ExecuteDevToolsMethod(System.Int32,System.String,System.String)">
+            <summary>
+            Execute a method call over the DevTools protocol. This is a more structured
+            version of SendDevToolsMessage.
+            See the DevTools protocol documentation at https://chromedevtools.github.io/devtools-protocol/ for details
+            of supported methods and the expected <paramref name="paramsAsJson"/> dictionary contents.
+            See the SendDevToolsMessage documentation for additional usage information.
+            </summary>
+            <param name="messageId">is an incremental number that uniquely identifies the message (pass 0 to have the next number assigned
+            automatically based on previous values)</param>
+            <param name="method">is the method name</param>
+            <param name="paramsAsJson">are the method parameters represented as a JSON string,
+            which may be empty.</param>
+            <returns>return the assigned message Id if called on the CEF UI thread and the message was
+            successfully submitted for validation, otherwise 0</returns>
+        </member>
+        <member name="M:CefSharp.IBrowserHost.ExecuteDevToolsMethod(System.Int32,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Execute a method call over the DevTools protocol. This is a more structured
+            version of SendDevToolsMessage.
+            See the DevTools protocol documentation at https://chromedevtools.github.io/devtools-protocol/ for details
+            of supported methods and the expected <paramref name="paramsAsJson"/> dictionary contents.
+            See the SendDevToolsMessage documentation for additional usage information.
+            </summary>
+            <param name="messageId">is an incremental number that uniquely identifies the message (pass 0 to have the next number assigned
+            automatically based on previous values)</param>
+            <param name="method">is the method name</param>
+            <param name="parameters">are the method parameters represented as a dictionary,
+            which may be empty.</param>
+            <returns>return the assigned message Id if called on the CEF UI thread and the message was
+            successfully submitted for validation, otherwise 0</returns>
+        </member>
+        <member name="M:CefSharp.IBrowserHost.AddDevToolsMessageObserver(CefSharp.Callback.IDevToolsMessageObserver)">
+            <summary>
+            Add an observer for DevTools protocol messages (method results and events).
+            The observer will remain registered until the returned Registration object
+            is destroyed. See the SendDevToolsMessage documentation for additional
+            usage information.
+            </summary>
+            <param name="observer">DevTools observer</param>
+            <returns>The observer will remain registered until the returned IRegistration object is Disposed.</returns>
         </member>
         <member name="M:CefSharp.IBrowserHost.DragTargetDragEnter(CefSharp.IDragData,CefSharp.MouseEvent,CefSharp.Enums.DragOperationsMask)">
             <summary>

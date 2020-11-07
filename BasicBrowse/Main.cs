@@ -24,7 +24,7 @@ namespace BasicBrowse
 
 		private void Main_Load(object sender, EventArgs e)
 		{
-			txtBar.Text = "https://www.google.com";
+			txtBar.Text = "https://www.google.com/";
 			browser = new ChromiumWebBrowser(txtBar.Text);
 			browser.Dock = DockStyle.Fill;
 			this.pContainer.Controls.Add(browser);
@@ -49,7 +49,7 @@ namespace BasicBrowse
 				}
 				else
 				{
-					browser.Load("https://www.google.com/search?client=chrome&q=" + txtBar.Text);
+					browser.Load("https://www.google.com/search?q=" + txtBar.Text);
 				}
 			}
 		}
@@ -74,6 +74,12 @@ namespace BasicBrowse
 		private void Main_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			Cef.Shutdown();
+		}
+
+		private void imgBtnAbout_Click(object sender, EventArgs e)
+		{
+			About aboutWindow = new About();
+			aboutWindow.ShowDialog();
 		}
 	}
 }
