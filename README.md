@@ -1,13 +1,13 @@
 # BasicBrowse
 
+## Notes (As of January 27, 2021)
+
+I will be stop updating this until I found a way to edit and execute the source code. Since my actual PC died, I downloaded the lastest copy of source code from GitHub to edit the code in my virtual machine, but visual studio has the stupid copyright protection that automatically blocks you from running the file downloaded from the internet.
+
 ## About
 
 I tried learning about what is .NET Framework and C#, so I coded and designed this browser.
 You are free to use this software anyways.
-
-## Source Code
-
-Please [click here](https://github.com/raymond-1227/BasicBrowse) for the source code.
 
 ## Overview
 
@@ -25,7 +25,7 @@ It doesn't have much things to do with. Here's a screenshot for the browser itse
 2. Execute them with the setup wizard.
 3. It should now be in your PC.
 
-## Future Updates
+## Future Updates (NotSoon™)
 
 - Add cofigurable options (such as default search engine)
 - Add AdBlocker and Tracking Protections
